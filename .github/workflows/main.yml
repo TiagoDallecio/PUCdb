@@ -15,8 +15,8 @@ jobs:
     - uses: azure/docker-login@v1
       with:
         login-server: ghcr.io
-         username:${{ secrets.GH_PACKAGES_USER }}
-         password:${{ secrets.GH_PACKAGES_TOKEN }}
+         username:${{ secrets.GHUSER }}
+         password:${{ secrets.GHTOKEN }}
       
     - run:
         docker build -t ghcr.io/TiagoDallecio/PUCdb/dbpuc:latest -f Dockerfile .
