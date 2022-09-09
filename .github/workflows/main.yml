@@ -19,7 +19,7 @@ jobs:
         password: ${{ secrets.GHTOKEN }}
       
     - run:
-        docker build -t ghcr.io/tiagodallecio/pucdb/dbpuc:latest -f Dockerfile .
+        docker build -t ghcr.io/tiagodallecio/pucdb/dbpuc:latest -f Dockerfile.
         docker tag ghcr.io/tiagodallecio/pucdb/dbpuc:latest ghcr.io/tiagodallecio/pucdb/dbpuc:${{ github.sha }}
       
     - run: 
