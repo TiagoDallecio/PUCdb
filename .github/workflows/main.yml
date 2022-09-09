@@ -1,0 +1,27 @@
+name: CI
+
+
+on:
+  workflow_dispatch:
+  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/Checkout@v2
+      
+    - uses: azure/docker-login@v1
+      with:
+        login-server: ghcr.io
+         username:${{ secrets.GH_PACKAGES_USER }}
+         password:${{ secrets.GH_PACKAGES_PASSWORD }}
+      
+    - run:
+        docker build -t ghcr.io/TiagoDallecio/PUCdb/dbpuc:latest -f Dockerfile .
+        docker tag ghcr.io/TiagoDallecio/PUCdb/dbpuc:latest ghcr.io/TiagoDallecio/PUCdb/dbpuc:${{ github.sha }}
+      
+    - run: 
+       docker push ghcr.io/TiagoDallecio/PUCdb/dbpuc:latest
+       docker push ghcr.io/TiagoDallecio/PUCdb/dbpuc:${{ github.sha }}
