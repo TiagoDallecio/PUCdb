@@ -16,7 +16,7 @@ jobs:
       with:
         login-server: ghcr.io
          username:${{ secrets.GH_PACKAGES_USER }}
-         password:${{ secrets.GH_PACKAGES_PASSWORD }}
+         password:${{ secrets.GH_PACKAGES_TOKEN }}
       
     - run:
         docker build -t ghcr.io/TiagoDallecio/PUCdb/dbpuc:latest -f Dockerfile .
