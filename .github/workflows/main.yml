@@ -4,13 +4,12 @@ name: CI
 on:
   workflow_dispatch:
   
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/Checkout@v2
+      uses: actions/checkout@v2
       
     - uses: azure/docker-login@v1
       with:
@@ -20,6 +19,7 @@ jobs:
       
     - run:
         docker build -t ghcr.io/tiagodallecio/pucdb/postgres:14.5 -f Dockerfile .
+    - run:
         docker tag ghcr.io/tiagodallecio/pucdb/postgres:14.5 ghcr.io/tiagodallecio/pucdb/postgres:${{ github.sha }}
         
     - run: 
