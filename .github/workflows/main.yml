@@ -17,12 +17,11 @@ jobs:
         username: ${{ secrets.GHUSER }}
         password: ${{ secrets.GHTOKEN }}
       
-    - run:
+    - run: |
         docker build -t ghcr.io/tiagodallecio/pucdb/postgres:14.5 -f Dockerfile .
-    - run:
         docker tag ghcr.io/tiagodallecio/pucdb/postgres:14.5 ghcr.io/tiagodallecio/pucdb/postgres:${{ github.sha }}
         
-    - run: 
+    - run: |
        docker push ghcr.io/tiagodallecio/pucdb/postgres:14.5 
        docker push ghcr.io/tiagodallecio/pucdb/postgres:${{ github.sha }}
        
